@@ -1,0 +1,12 @@
+//对象声明
+var obj = {
+  foo: 'Hello',
+  bar: 'World'
+};
+
+obj.foo//读取对象属性
+'p' in obj//检查对象是否包含某个属性
+Object.keys(obj)//查看对象本身的所有属性(数组)
+delete obj.p//删除对象的属性
+
+for (var i in obj) {}//遍历一个对象的全部属性的值

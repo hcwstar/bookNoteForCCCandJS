@@ -1,0 +1,77 @@
+console.log();//方法用于在控制台输出信息(可接受字符串和变量,可多个用"+"连接)
+
+//1秒后执行{ }里的代码
+setTimeout(() => {
+}, 1000);
+
+//每1秒执行一次{ }里的代码
+setInterval(() => {
+},1000);
+
+sleep(3000);//让程序休息3秒
+
+//算出一个操作所花费的准确时间
+console.time('Array initialize');//计时开始
+console.timeEnd('Array initialize');//计时结束
+
+/** 是否验证切换账号 */(使用此格式备注，鼠标悬浮可显示对象说明)
+
+//回调函数
+function f1(callback) {
+  // f1 的代码
+  callback();调用回调函数
+}
+
+
+//依次回调函数
+(new Promise(step1))
+  .then(step2)
+  .then(step3)
+  .then(step4);
+
+
+exports.cardType = function (D) {...};//导出模块
+var card = require("./card");//引用模块
+card.cardType([2, 3, 4]);//执行模块
+
+let userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+let isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+let isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器
+let isEdge = userAgent.indexOf("Edge") > -1; //判断是否IE的Edge浏览器
+let isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1; //判断是否Safari浏览器
+let isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1; //判断Chrome浏览器
+let isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+
+//获取电池电量信息
+navigator.getBattery().then(function (result) {
+    cc.log(result)
+});
+
+
+f1.on('done', f2);//事件监听
+f1.trigger('done');//事件发射
+
+window.onresize = function () {
+    cc.log("窗口大小变化")
+}
+
+
+var a = setTimeout(function(){console.log('a');} ,1000);  //定时器，只执行一次
+clearTimeout(a);   //取消setTimeout定时器
+var a = setInterval(function(){console.log('a');} ,1000);   //定时器，每隔多少时间执行一次
+clearInterval(a);   //取消setInterval定时器
+a.unref();   //取消定时器的函数调用，但不停止定时器的执行
+a.ref();   //恢复定时器的调用
+
+
+window.name = 'Hello World!';//设置当前浏览器窗口的名字
+window.open('somefile.html');//新建另一个浏览器窗口
+
+navigator.appVersion;//返回用户的操作系统
+navigator.userAgent;//返回用户的系统信息
+navigator.geolocation;//返回用户地理位置的信息
+
+window.location.href;//获得当前页面的地址
+window.screen;//包含有关用户屏幕的信息
+
+

@@ -1,0 +1,63 @@
+事件处理是在节点（cc.Node）中完成的.
+监听事件可以通过 this.node.on() 或 this.node.once() 函数来注册(on:始终监听   once:只监听一次)
+
+this.node.on('touchend', (event) => {
+    /*****执行代码*****/
+});
+
+this.node.once('click', (event) => {
+    /*****执行代码*****/
+});
+
+this.node.targetOff(this);//移除当前节点所在的脚本注册的所有注册事件
+this.node.pauseSystemEvents(true);//暂停本节点和所有子节点的节点系统事件
+this.node.resumeSystemEvents(true);//恢复本节点和所有子节点的节点系统事件
+
+系统内置事件:
+按钮监听【点击'click'(必须有button组件)】
+
+触摸监听【开始'touchstart',移动'touchmove',结束'touchend',取消'touchcancel'】
+var pos = event.getLocation();//获取触摸点的坐标(包含X和Y)
+var x = event.getLocationX();//获取触摸点的坐标X
+var y = event.getLocationY();//获取触摸点的坐标Y
+var a = event.getID();//获取触点的ID
+
+鼠标监听【移入'mouseenter',移出'mouseleave'】
+var a = event.getScrollY();//获取滚轮滚动的 Y 轴距离，只有滚动时才有效
+var a = event.getLocation();//获取鼠标位置对象，对象包含 x 和 y 属性
+
+输入框监听【获得焦点'editing-did-began',文字变化'text-changed',失去焦点'editing-did-ended'】
+
+属性变化监听【位置'position-changed',宽高 'size-changed'】
+
+Toggle复选按钮监听【选择'toggle'】
+
+ScrollView控件监听【滚动中'scrolling',停止滚动'scroll-ended'】
+
+用户自定义事件:
+this.node.on('事件名',function,this);//注册监听
+this.node.emit('事件名');//发送监听广播
+this.node.off('事件名',function,this);//关闭监听
+
+
+//注册带参数监听
+this.node.on('player_join_team',function(event){
+    cc.log(JSON.stringify(event.detail.id));
+},this);
+//发送带参数的监听
+this.node.emit('player_join_team',{id:1001});
+
+
+cc.eventManager.addListener({
+    event: cc.EventListener.TOUCH_ONE_BY_ONE,
+    onTouchBegan: (event) => {
+        cc.log("111");
+        return true;//是否吞没事件(true:不吞没  false:吞没)
+    },
+    onTouchMoved: (event) => {
+        cc.log("222");
+    },
+    onTouchEnded: (event) => {
+        cc.log("333");
+    }
+}, this.node);

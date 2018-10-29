@@ -1,0 +1,51 @@
+var action = cc.moveBy(1,100,100);//定义动作对象
+this.node.runAction(action);//执行节点动作
+this.node.stopAction(action);//停止节点动作
+
+常用动作对象:
+cc.show()//立即显示
+cc.hide ()//立即隐藏
+cc.fadeIn(1)//渐显效果
+cc.fadeOut(1)//渐隐效果
+cc.delayTime(1)//等待1秒
+
+cc.moveTo(1,50,50)//移动此节点
+cc.scaleTo(1,0.7,0.8)//缩放此节点
+cc.rotateTo(1,160)//旋转此节点
+cc.fadeTo(2,0)//变化此节点的透明度
+cc.tintTo(2,255,255,0)//变化此节点的颜色
+
+cc.moveTo(1,50,50).easing(cc.easeIn(1))//加速效果
+cc.scaleTo(1,0.7,0.8).easing(cc.easeOut(1))//减速效果
+cc.rotateBy(8, 2880).easing(cc.easeInOut(3))//先加速,再减速
+
+//动作回调
+cc.callFunc(() => {
+
+})
+
+//顺序执行动作列表
+cc.sequence(
+
+)
+
+//同时执行动作列表
+cc.spawn(
+
+)
+
+//无限循环动作列表
+cc.repeatForever(
+
+)
+
+//循环3次动作列表
+cc.repeat(
+
+,3)
+
+
+this.node.stopAllActions();//停止节点所有动作
+this.node.pauseAllActions();//暂停节点所有动作
+this.node.resumeAllActions();//恢复节点所有动作
+cc.ActionManager.removeAllActions();//停止所有动作

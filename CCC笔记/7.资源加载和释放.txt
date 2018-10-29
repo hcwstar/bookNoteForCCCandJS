@@ -1,0 +1,35 @@
+动态加载本地资源时,路径必须在"assets\resources"下.
+
+//动态加载精灵纹理,本例中路径为:"assets\resources\imgs\image.png"/
+var realUrl = cc.url.raw("resources/imgs/image.png");
+var texture = cc.textureCache.addImage(realUrl);
+this.node.getComponent(cc.Sprite).spriteFrame.setTexture(texture);
+
+//动态加载精灵纹理,本例中路径为:"assets\resources\imgs\image.png"/
+cc.loader.loadRes("imgs/image", cc.SpriteFrame, (err, spriteFrame) => {
+    if (err) return;
+    this.node.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+});
+
+//动态加载图集
+cc.loader.loadRes("imgs/images", cc.SpriteAtlas, (err, atlas) => {
+    if (err) return;
+    var frame = atlas.getSpriteFrame('sheep_down_0');
+    sprite.spriteFrame = frame;
+});
+
+//动态加载预制体,本例中路径为:"assets\resources\prefabs\name.prefab"/
+cc.loader.loadRes("prefabs/name", (err, prefab) => {
+    if (err) return;
+    var node = cc.instantiate(prefab);
+    node.parent = cc.find("Canvas");
+});
+
+//加载文件夹下所有资源
+cc.loader.loadResDir("Prefab\hall")
+
+//销毁动态加载的资源
+cc.loader.releaseRes("资源路径不含后缀");
+
+//销毁实例资源
+cc.loader.releaseAsset(spriteFrame);

@@ -1,0 +1,24 @@
+/**cc.Mask必须是反向,cc.Mask节点下放一个刮开层,尺寸同cc.Mask*/
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+        mask: cc.Mask,
+    },
+
+    onLoad: function () {
+        this.node.on("touchmove", this.addCircle, this);
+    },
+
+    addCircle: function (event) {
+        var point = event.touch.getLocation();
+        point = this.node.convertToNodeSpaceAR(point);
+
+        var stencil = this.mask._clippingStencil;
+        var color = cc.color(255, 255, 255, 0);
+        stencil.drawPoly(this.mask._calculateCircle(point, cc.p(50, 50), 64), color, 0, color);
+        if (!CC_JSB) {
+            cc.renderer.childrenOrderDirty = true;
+        }
+    },
+});
